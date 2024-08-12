@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="card-body" >
+    <div class="text-center mt-3 mb-5 bg-secondary-theme ">
+      <br>
+      <h3 class="text-center text-theme-primary ">{{formStatus}} Categories</h3>
+      <p class="text-center mb-5">You can {{formStatus}}  categories from here ..!</p>
+
+      <form (ngSubmit)="onSubmit(categoryForm)"  #categoryForm="ngForm"  style=" padding-left: 8em; margin-right: -5rem;" class="form-inline mb-5 mt-5 ">
+          <div class="form-group col-md-8">
+            <input [ngClass]="{'is-invalid' : newCategory.touched && newCategory.invalid }"  required #newCategory = 'ngModel'  [(ngModel)]='formCategory' name="category" type="text" class="form-control shadow-effect"  placeholder="Add New Categories">
+            <div class="alert alert-danger" *ngIf="newCategory.touched && newCategory.invalid">
+              Category field is required
+            </div>
+          </div>
+
+          <div class="form-group col-md-3">
+            <button [disabled]="categoryForm.invalid"  class="btn-btn-block btn-info mb-2 btn-theme">{{formStatus}} category</button>
+          </div>
+      </form>
+      <br>
+    </div>
+  </div>
+
+  <div class="row mt-5 mb-5 ">
+
+
+
+    <div class="col-md-6">
+      <div class="card shadow-effect">
+        <div class="card-body">
+          <table class="table row-border hover" >
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Category</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let category of categoryArray ; let i = index  " >
+                <td>{{i+1}}</td>
+                <td>{{category.data.category}}</td>
+                <td>
+                  <button class="btn btn-sm btn-warning" (click)="onEdit(category.data.category, category.id)">EDIT</button>
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-danger ml-2" (click)="onDelete( category.id)">DELETE</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
