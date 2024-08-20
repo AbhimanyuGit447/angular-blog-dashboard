@@ -31,6 +31,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,

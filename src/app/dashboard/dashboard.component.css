@@ -2,3 +2,184 @@
   height: 200px;
   cursor: pointer;
 }
+
+.selected{
+  background-color: rgb(78, 157, 78) !important;
+
+}
+
+.mainDiv{
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(196, 228, 196);
+  cursor: pointer;
+  padding-right: 1rem;
+
+  padding: 1rem;
+}
+
+.usrList{
+
+  margin: 4px, 4px;
+  padding: 4px;
+
+  width: 900px;
+  height: 10rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.board {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.column {
+  flex: 1;
+  margin: 0 10px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-height: 300px;
+  transition: background-color 0.3s ease;
+}
+
+.ready-column {
+  background-color: #f0f8ff;
+}
+
+.in-progress-column {
+  background-color: #fffacd;
+}
+
+.finished-column {
+  background-color: #e0ffe0;
+}
+
+.column h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.task {
+  position: relative; /* Make this task card the reference point for absolute positioning */
+  background-color: #ffffff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+
+
+.task-delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #dc3545; /* Bootstrap danger color */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.task:hover {
+  transform: translateY(-2px);
+  background-color: #f8f8f8;
+
+}
+
+.task p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.task button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+/* Button styles for different columns */
+.move-to-in-progress {
+  background-color: #007bff;
+}
+
+.move-to-in-progress:hover {
+  background-color: #0056b3;
+}
+
+.move-to-finished {
+  background-color: #28a745;
+}
+
+.move-to-finished:hover {
+  background-color: #218838;
+}
+
+.move-to-ready {
+  background-color: #ffc107;
+  color: black;
+}
+
+.move-to-ready:hover {
+  background-color: #e0a800;
+  color: black;
+}
+
+.task-creation-form {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.task-creation-form input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex-grow: 1;
+}
+
+.task-creation-form button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.task-creation-form button:hover {
+  background-color: #218838;
+}
+
+
