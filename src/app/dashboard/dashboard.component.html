@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-md-4 mb-5">
-      <div class="card shadow-effect" routerLink="/categories" >
+      <div class="card shadow-effect" routerLink="/categories">
         <div class="card-body text-center bg-secondary-theme">
           <h1 class="mt-3 text-theme-primary"><i class="fas fa-clipboard-list"></i></h1>
           <h2 class="text-theme-primary">Category</h2>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-md-4 mb-5">
-      <div class="card shadow-effect" routerLink="/posts" >
+      <div class="card shadow-effect" routerLink="/posts">
         <div class="card-body text-center bg-secondary-theme">
           <h1 class="mt-3 text-theme-primary"><i class="fas fa-file-image"></i></h1>
           <h2 class="text-theme-primary">Posts</h2>
@@ -21,8 +21,8 @@
       </div>
     </div>
 
-    <div [ngClass]="isOpened ? 'selected': 'notselected' " class="col-md-4 mb-5"  (click)="expandSubList()" >
-      <div  class="card shadow-effect">
+    <div [ngClass]="isOpened ? 'selected': 'notselected'" class="col-md-4 mb-5" (click)="expandSubList()">
+      <div class="card shadow-effect">
         <div class="card-body text-center bg-secondary-theme">
           <h1 class="mt-3 text-theme-primary"><i class="fas fa-file-image"></i></h1>
           <h2 class="text-theme-primary">Subscribers</h2>
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div [ngClass]="isTaskOpened ? 'selected': 'notselected' "  class="col-md-4 mb-5" (click)="onTasks()" >
+    <div [ngClass]="isTaskOpened ? 'selected': 'notselected'" class="col-md-4 mb-5" (click)="onTasks()">
       <div class="card shadow-effect">
         <div class="card-body text-center bg-secondary-theme">
           <h1 class="mt-3 text-theme-primary"><i class="fas fa-file-image"></i></h1>
@@ -41,20 +41,17 @@
       </div>
     </div>
 
-
-
-    <div class="mainDiv" *ngIf="this.usersArray.length > 0 && this.isOpened"  >
+    <div class="mainDiv" *ngIf="this.usersArray.length > 0 && this.isOpened">
       <div class="usrList">
-        <div  *ngFor="let usr of usersArray">
-          <div style="display: flex; flex-direction: row; justify-content: space-between; text-align: center; align-items: center;  ">
+        <div *ngFor="let usr of usersArray">
+          <div class="user-info">
             <h4>{{usr?.name}}</h4>
-            <p style="color: blue;" >{{usr?.email}}</p>
+            <p class="user-email">{{usr?.email}}</p>
           </div>
-
         </div>
       </div>
 
-      <div (click)="close()" >
+      <div (click)="close()" class="close-btn">
         X
       </div>
     </div>
@@ -64,71 +61,70 @@
   <div *ngIf="isTaskOpened" class="task-creation-form">
     <input required [(ngModel)]="newTaskName" placeholder="Enter new task" />
     <input [(ngModel)]="newTaskUrl" placeholder="Enter task URL" />
-    <button  (click)="addTask()">Add Task</button>
+    <button (click)="addTask()">Add Task</button>
   </div>
-  <div style="display: flex;"  *ngIf="isTaskOpened">
 
+  <div class="task-board" *ngIf="isTaskOpened">
+    <div class="board">
 
-
-    <div *ngIf="isTaskOpened" class="board" style="width: 100%;" >
-      <div class="column ready-column" >
-
+      <div class="column ready-column">
         <h2>Ready</h2>
         <div *ngFor="let task of readyTasks" class="task">
-
-            <p >{{ task.name }}</p>
-            <button class="move-to-in-progress" (click)="moveTask(task, 'InProgress')">Move to In Progress</button>
-            <button  class="task-delete-btn"  style="position:absolute; margin-left: 5rem; margin-top: -2rem;" class="btn btn-danger" (click)="deleteTask(task)">x</button>
+          <div class="task-content">
+            <p>{{ task.name }}</p>
+            <div class="task-buttons">
+              <button class="move-to-in-progress" (click)="moveTask(task, 'InProgress')">Move to In Progress</button>
+              <button class="task-delete-btn" (click)="deleteTask(task)">x</button>
+            </div>
             <ng-container *ngIf="task.url">
-              <a href="{{task.url}}"><p *ngIf="task.url">{{ task.url }}</p></a>
+              <a href="{{task.url}}"><p>{{ task.url }}</p></a>
             </ng-container>
             <ng-container *ngIf="!task.url">
-             <p>No URL Added</p>
+              <p>No URL Added</p>
             </ng-container>
-
-
-
+          </div>
         </div>
       </div>
 
       <div class="column in-progress-column">
         <h2>In Progress</h2>
         <div *ngFor="let task of inProgressTasks" class="task">
-
-          <p>{{ task.name }}</p>
-          <button class="move-to-finished" (click)="moveTask(task, 'Finished')">Move to Finished</button>
-          <br>
-          <button class="move-to-ready" (click)="moveTask(task, 'Ready')">Move to Ready</button>
-
-          <button  class="task-delete-btn"  style="position:absolute; margin-left: 8rem; margin-top: -4.5rem;" class="btn btn-danger" (click)="deleteTask(task)">x</button>
-          <ng-container *ngIf="task.url">
-            <a href="{{task.url}}"><p *ngIf="task.url">{{ task.url }}</p></a>
-          </ng-container>
-          <ng-container *ngIf="!task.url">
-           <p>No URL Added</p>
-          </ng-container>
-
+          <div class="task-content">
+            <p>{{ task.name }}</p>
+            <div class="task-buttons">
+              <button class="move-to-finished" (click)="moveTask(task, 'Finished')">Move to Finished</button>
+              <button class="move-to-ready" (click)="moveTask(task, 'Ready')">Move to Ready</button>
+              <button class="task-delete-btn" (click)="deleteTask(task)">x</button>
+            </div>
+            <ng-container *ngIf="task.url">
+              <a href="{{task.url}}"><p>{{ task.url }}</p></a>
+            </ng-container>
+            <ng-container *ngIf="!task.url">
+              <p>No URL Added</p>
+            </ng-container>
+          </div>
         </div>
       </div>
 
       <div class="column finished-column">
         <h2>Finished</h2>
         <div *ngFor="let task of finishedTasks" class="task">
-          <p>{{ task.name }}</p>
-          <button class="move-to-in-progress" (click)="moveTask(task, 'InProgress')">Move to In Progress</button>
-          <button  class="task-delete-btn"  style="position:absolute; margin-left: 5rem; margin-top: -2rem;" class="btn btn-danger" (click)="deleteTask(task)">x</button>
-          <ng-container *ngIf="task.url">
-            <a href="{{task.url}}"><p *ngIf="task.url">{{ task.url }}</p></a>
-          </ng-container>
-          <ng-container *ngIf="!task.url">
-           <p>No URL Added</p>
-          </ng-container>
+          <div class="task-content">
+            <p>{{ task.name }}</p>
+            <div class="task-buttons">
+              <button class="move-to-in-progress" (click)="moveTask(task, 'InProgress')">Move to In Progress</button>
+              <button class="task-delete-btn" (click)="deleteTask(task)">x</button>
+            </div>
+            <ng-container *ngIf="task.url">
+              <a href="{{task.url}}"><p>{{ task.url }}</p></a>
+            </ng-container>
+            <ng-container *ngIf="!task.url">
+              <p>No URL Added</p>
+            </ng-container>
+          </div>
         </div>
       </div>
+
     </div>
-
-
-
   </div>
-
 </div>
